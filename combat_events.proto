@@ -28,12 +28,10 @@ message CombatEvent {
 }
 
 message Entity {
-  string name = 1;
-  uint64 gameobject_id = 2;
-  uint32 base_id = 3;
-  ObjectKind objectkind = 4;
+  uint64 gameobject_id = 1;
+  uint32 base_id = 2;
+  ObjectKind objectkind = 3;
 }
-
 message EventSnapshot {
   uint32 current_hp = 1;
   uint32 max_hp = 2;
