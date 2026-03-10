@@ -190,7 +190,7 @@ enum ObjectKind
 //past this line, non game related Enums
 enum EncounterEndKind
 {
-  Clear = 1;
-  Wipe = 2;
+  Clear = 0;
+  Wipe = 1;
 
 }
