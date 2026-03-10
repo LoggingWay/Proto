@@ -24,6 +24,7 @@ message CombatEvent {
     EncounterStartData encounter_start = 16;
     EncounterEndData encounter_end = 17;
     ZoneChangeData zone_change = 18;
+    PlayerEnterCombat = 19;
   }
 }
 
