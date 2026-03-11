@@ -73,6 +73,7 @@ message DamageTakenData {
   bool parried = 7;
   bool blocked = 8;
   uint32 icon = 9;  // 0 means null
+  bool main_target = 10;
 }
 
 message HealedData {
