@@ -11,17 +11,21 @@ service Loggingway {
 
 //generate a xivauth redirect
 rpc GetXivAuthRedirect (GetXivAuthRedirectRequest) returns (GetXivAuthRedirectReply) {}
-//client send a code from xivauth, gets a jwt
+//client send a code from xivauth, gets a sessionID
 rpc Login (LoginRequest) returns (LoginReply) {}
 
 rpc CreateNewReport (NewReportRequest) returns (NewReportReply) {}
 
 rpc EncounterIngest (NewEncounterRequest) returns (NewEncounterReply) {}
 
+rpc GetMyCharacters (GetMyCharactersRequest) returns (GetMyCharactersReply) {}
+rpc GetMyReports (GetMyReportsRequest) returns (GetMyReportsReply) {}
+rpc GetEncountersStats (GetEncountersStatsRequest) returns (GetEncountersStatsReply) {}
 rpc CombatEventIngest(stream combat_events.CombatEvent) returns (CombatEventIngestReturn) {}
 
 }
 
+//Declared in order, Request > Reply
 message GetXivAuthRedirectRequest{
     
 }
@@ -56,6 +60,60 @@ message NewEncounterReply{
     uint32 code =1;
 }
 
+message GetMyCharactersRequest {
+    //sessionID is included as metadata anyway
+}
+message GetMyCharactersReply{
+    repeated Character characters = 1;
+}
+
+message GetMyReportsRequest{
+    //saaaaaame
+}
+message GetMyReportsReply{
+    repeated Report reports = 1;
+}
+message GetEncountersStatsRequest{
+    int64 encounter_id = 1;
+}
+message GetEncountersStatsReply{
+    repeated EncounterPlayerBreakdown playerstats = 1;
+}
+//types
+message Character{
+    string name = 1;
+    string homeworld = 2;
+    string datacenter = 3;
+    string persistent_key = 4;
+    uint32 visbility = 5;
+}
+
+message Report{
+    int64 report_id = 1;
+    string report_name = 2;
+    repeated Encounter encounters = 3;
+}
+message Encounter{
+    int64 encounter_id = 1;
+    uint32 zone_id = 2;
+    int64 uploaded_at = 3;
+}
+
+message EncounterPlayerBreakdown{
+    string name = 1;
+    int64 total_damage = 2;
+    int64 total_healing = 3;
+
+    int64 total_hits = 4;
+    int64 total_crits = 5;
+    int64 total_direct_hits = 6;
+    float duration = 7;
+
+    float dps =8;
+    float hps =9;
+    float crit_rate =10;
+    float dh_rate =11;
+}
 message CombatEventIngestReturn{
   uint32 code = 1;
 }
