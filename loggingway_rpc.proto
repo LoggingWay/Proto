@@ -20,6 +20,7 @@ rpc EncounterIngest (NewEncounterRequest) returns (NewEncounterReply) {}
 
 rpc GetMyCharacters (GetMyCharactersRequest) returns (GetMyCharactersReply) {}
 rpc GetMyReports (GetMyReportsRequest) returns (GetMyReportsReply) {}
+rpc GetMyEncounters (GetMyEncountersRequest) returns (GetMyEncountersReply) {}
 rpc GetEncountersStats (GetEncountersStatsRequest) returns (GetEncountersStatsReply) {}
 rpc CombatEventIngest(stream combat_events.CombatEvent) returns (CombatEventIngestReturn) {}
 
@@ -72,6 +73,12 @@ message GetMyReportsRequest{
 }
 message GetMyReportsReply{
     repeated Report reports = 1;
+}
+message GetMyEncountersRequest{
+    uint32 zone_id = 1;//if this is 0, return the last 20 encounters regardless of zone
+}
+message GetMyEncountersReply{
+    repeated Encounter encounters = 1;
 }
 message GetEncountersStatsRequest{
     int64 encounter_id = 1;
