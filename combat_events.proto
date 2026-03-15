@@ -214,6 +214,7 @@ rpc GetMyCharacters (GetMyCharactersRequest) returns (GetMyCharactersReply) {}
 rpc GetMyReports (GetMyReportsRequest) returns (GetMyReportsReply) {}
 rpc GetMyEncounters (GetMyEncountersRequest) returns (GetMyEncountersReply) {}
 rpc GetEncountersStats (GetEncountersStatsRequest) returns (GetEncountersStatsReply) {}
+rpc EnrollCharacters (EnrollCharactersRequest) returns (EnrollCharactersReply) {}
 rpc CombatEventIngest(stream combat_events.CombatEvent) returns (CombatEventIngestReturn) {}
 
 }
@@ -277,6 +278,12 @@ message GetEncountersStatsRequest{
 }
 message GetEncountersStatsReply{
     repeated EncounterPlayerBreakdown playerstats = 1;
+}
+message EnrollCharactersRequest{
+
+}
+message EnrollCharactersReply{
+  
 }
 //types
 message Character{
