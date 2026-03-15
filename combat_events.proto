@@ -246,8 +246,7 @@ message NewReportReply{
 }
 
 message NewEncounterRequest{
-    int64 report_id = 1;
-    repeated combat_events.CombatEvent events = 2;
+    repeated combat_events.CombatEvent events = 1;
 }
 
 message NewEncounterReply{
@@ -283,7 +282,7 @@ message EnrollCharactersRequest{
 
 }
 message EnrollCharactersReply{
-  
+
 }
 //types
 message Character{
