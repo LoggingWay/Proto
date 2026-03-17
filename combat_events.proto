@@ -13,6 +13,7 @@ message CombatEvent {
   Entity target = 3;
   EventSnapshot source_snapshot = 4;
   EventSnapshot target_snapshot = 5;
+  LocalPlayerSnapshot local_snapshot = 6;//Im so tired but fuck it this is certainly a good idea111111111111
   // Discriminated union using oneof
   oneof event_data {
     StatusEffectData status_effect = 10;
@@ -122,6 +123,16 @@ message PlayerEnterCombat{
   uint32 criticalHit = 12;
   uint32 directHit = 13;
 
+}
+message LocalPlayerSnapshot{
+  uint32 level = 6;
+  uint32 attack_power = 7;
+  uint32 skillspeed = 8;
+  uint32 spellspeed = 9;
+  uint32 tenacity = 10;
+  uint32 determination = 11;
+  uint32 criticalHit = 12;
+  uint32 directHit = 13;
 }
 /* =======================
    Enums
