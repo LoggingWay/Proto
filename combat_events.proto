@@ -329,6 +329,7 @@ message EncounterPlayerBreakdown{
     float hps =9;
     float crit_rate =10;
     float dh_rate =11;
+    float pscore = 12;
 }
 message CombatEventIngestReturn{
   uint32 code = 1;
