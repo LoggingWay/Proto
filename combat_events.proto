@@ -125,7 +125,6 @@ message PlayerEnterCombat{
 
 }
 message LocalPlayerSnapshot{
-  uint32 level = 6;
   uint32 attack_power = 7;
   uint32 skillspeed = 8;
   uint32 spellspeed = 9;
