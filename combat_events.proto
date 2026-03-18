@@ -90,6 +90,7 @@ message DeathData {
 
 message EncounterStartData {
   uint32 territorytype = 1;
+  uint32 cfc_id = 2;//content finder id
 }
 
 message EncounterEndData {
