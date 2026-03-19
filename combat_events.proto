@@ -216,6 +216,8 @@ service Loggingway {
 rpc GetXivAuthRedirect (GetXivAuthRedirectRequest) returns (GetXivAuthRedirectReply) {}
 //client send a code from xivauth, gets a sessionID
 rpc Login (LoginRequest) returns (LoginReply) {}
+rpc SessionRefresh (SessionRefreshRequest) returns (SessionRefreshReply) {}
+rpc Logout (LogoutRequest) returns (LogoutReply) {}
 
 rpc CreateNewReport (NewReportRequest) returns (NewReportReply) {}
 
@@ -246,6 +248,19 @@ message LoginRequest{
 
 message LoginReply{
     string sessionID = 1;
+}
+
+message SessionRefreshRequest{
+}
+
+message SessionRefreshReply{
+  string sessionID = 1;
+}
+
+message LogoutRequest{
+}
+
+message LogoutReply{
 }
 
 message NewReportRequest{
