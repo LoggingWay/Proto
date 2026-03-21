@@ -345,6 +345,7 @@ message EncounterPlayerBreakdown{
     float crit_rate =10;
     float dh_rate =11;
     float pscore = 12;
+    uint32 job_id = 13;
 }
 message CombatEventIngestReturn{
   uint32 code = 1;
