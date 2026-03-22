@@ -346,6 +346,8 @@ message EncounterPlayerBreakdown{
     float dh_rate =11;
     float pscore = 12;
     uint32 job_id = 13;
+    int64 rank = 14;        // 0 = unranked (failed to process/deleted)
+    int64 total_ranked = 15; // total players ranked
 }
 message CombatEventIngestReturn{
   uint32 code = 1;
