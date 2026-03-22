@@ -228,6 +228,7 @@ rpc GetMyReports (GetMyReportsRequest) returns (GetMyReportsReply) {}
 rpc GetMyEncounters (GetMyEncountersRequest) returns (GetMyEncountersReply) {}
 rpc GetEncountersStats (GetEncountersStatsRequest) returns (GetEncountersStatsReply) {}
 rpc EnrollCharacters (EnrollCharactersRequest) returns (EnrollCharactersReply) {}
+rpc GetLeaderBoard (GetLeaderBoardRequest) returns (GetLeaderBoardReply) {}
 rpc CombatEventIngest(stream combat_events.CombatEvent) returns (CombatEventIngestReturn) {}
 
 }
@@ -310,6 +311,16 @@ message EnrollCharactersRequest{
 message EnrollCharactersReply{
 
 }
+
+message GetLeaderBoardRequest{
+  uint32 zone_id = 1;//really need to rename...
+  uint32 job_id = 2;//0=all jobs
+}
+
+message GetLeaderBoardReply{
+  repeated LeaderBoardEntry = 1;
+  int64 totalRanked = 2;
+}
 //types
 message Character{
     string name = 1;
@@ -348,6 +359,14 @@ message EncounterPlayerBreakdown{
     uint32 job_id = 13;
     int64 rank = 14;        // 0 = unranked (failed to process/deleted)
     int64 total_ranked = 15; // total players ranked
+    int64 global_rank = 16;
+    int64 global_total_rank = 17;
+}
+message LeaderBoardEntry{
+  Character char = 1;
+  int64 rank = 2;
+  float psccore = 3;
+  uint32 jobid = 4;
 }
 message CombatEventIngestReturn{
   uint32 code = 1;
