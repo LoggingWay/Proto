@@ -318,7 +318,7 @@ message GetLeaderBoardRequest{
 }
 
 message GetLeaderBoardReply{
-  repeated LeaderBoardEntry = 1;
+  repeated LeaderBoardEntry entry = 1;
   int64 totalRanked = 2;
 }
 //types
