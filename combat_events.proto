@@ -278,7 +278,8 @@ message NewEncounterRequest{
 }
 
 message NewEncounterReply{
-    uint32 code =1;
+    string jobid = 1;
+    int64 queued_at = 2;//UnixTimeSeconds
 }
 
 message GetMyCharactersRequest {
