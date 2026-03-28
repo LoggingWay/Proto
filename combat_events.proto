@@ -274,6 +274,7 @@ message NewReportReply{
 
 message NewEncounterRequest{
     repeated combat_events.CombatEvent events = 1;
+    uint32 cfc_id = 2;
 }
 
 message NewEncounterReply{
