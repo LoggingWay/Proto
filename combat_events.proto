@@ -296,7 +296,7 @@ message GetMyReportsReply{
     repeated Report reports = 1;
 }
 message GetMyEncountersRequest{
-    uint32 zone_id = 1;//if this is 0, return the last 20 encounters regardless of zone
+    uint32 cfc_id = 1;//if this is 0, return the last 20 encounters regardless of cfc
 }
 message GetMyEncountersReply{
     repeated Encounter encounters = 1;
@@ -315,7 +315,7 @@ message EnrollCharactersReply{
 }
 
 message GetLeaderBoardRequest{
-  uint32 zone_id = 1;//really need to rename...
+  uint32 cfc_id = 1;
   uint32 job_id = 2;//0=all jobs
 }
 
@@ -339,7 +339,7 @@ message Report{
 }
 message Encounter{
     int64 encounter_id = 1;
-    uint32 zone_id = 2;
+    uint32 cfc_id = 2;
     int64 uploaded_at = 3;
 }
 
