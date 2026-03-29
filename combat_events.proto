@@ -96,6 +96,7 @@ message EncounterStartData {
 message EncounterEndData {
   uint32 territorytype = 1;
   EncounterEndKind reason = 2;
+  uint32 cfc_id = 3;
 }
 
 message ZoneChangeData{
