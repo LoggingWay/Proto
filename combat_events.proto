@@ -250,6 +250,7 @@ message LoginRequest{
 
 message LoginReply{
     string sessionID = 1;
+    int32 code = 2;
 }
 
 message SessionRefreshRequest{
@@ -309,10 +310,11 @@ message GetEncountersStatsReply{
     EncounterPlayerBreakdown playerstats = 1;
 }
 message EnrollCharactersRequest{
-
+    string code = 1;
+    string state = 2;
 }
 message EnrollCharactersReply{
-
+  
 }
 
 message GetLeaderBoardRequest{
