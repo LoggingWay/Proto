@@ -231,7 +231,7 @@ rpc GetEncountersStats (GetEncountersStatsRequest) returns (GetEncountersStatsRe
 rpc EnrollCharacters (EnrollCharactersRequest) returns (EnrollCharactersReply) {}
 rpc GetLeaderBoard (GetLeaderBoardRequest) returns (GetLeaderBoardReply) {}
 rpc CombatEventIngest(stream combat_events.CombatEvent) returns (CombatEventIngestReturn) {}
-
+rpc PollJobResult (PollJobResultRequest) returns (PollJobResultReply) {}
 }
 
 //Declared in order, Request > Reply
@@ -325,6 +325,18 @@ message GetLeaderBoardRequest{
 message GetLeaderBoardReply{
   repeated LeaderBoardEntry entry = 1;
   int64 totalRanked = 2;
+}
+
+message PollJobResultRequest  { 
+  string job_id = 1; //where job id is server side job id of the parse in the queue
+  }
+message PollJobResultReply {
+    bool  ready       = 1;
+    int64 encounter_id = 2;
+    int64 rank         = 3;
+    int64 total_ranked = 4;
+    float pscore       = 5;
+    string error       = 6;
 }
 //types
 message Character{
