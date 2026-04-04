@@ -124,7 +124,7 @@ message PlayerEnterCombat{
   uint32 determination = 11;
   uint32 criticalHit = 12;
   uint32 directHit = 13;
-
+  uint32 weapon_damage = 14;
 }
 message LocalPlayerSnapshot{
   uint32 attack_power = 7;
