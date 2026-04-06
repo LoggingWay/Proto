@@ -104,6 +104,203 @@ message ZoneChangeData{
 }
 
 
+//Gauge related messages
+message BlackMageGauge{
+  bool InAstralFire = 1;
+  bool InUmbralIce = 2;
+  bool IsEnochianActive = 3;
+  byte UmbralHearts = 4;
+  byte PolyglotStacks = 5;
+  byte UmbralIceStacks = 6;
+  byte AstralFireStacks = 7;
+  int AstralSoulStacks = 8;//Flare Star counter
+}
+
+// AST - Astrologian
+message AstrologianGauge {
+  repeated CardType drawn_cards  = 1;
+  CardType          drawn_crown_card = 2;
+  DrawType          active_draw  = 3;
+}
+
+// BRD - Bard
+message BardGauge {
+  uint32       song_timer = 1; // milliseconds
+  uint32       repertoire = 2;
+  uint32       soul_voice = 3;
+  Song         song       = 4;
+  Song         last_song  = 5;
+  repeated Song coda      = 6; // always 3 entries
+}
+
+// DNC - Dancer
+message DancerGauge {
+  uint32          feathers        = 1;
+  uint32          esprit          = 2;
+  uint32          completed_steps = 3;
+  repeated uint32 steps           = 4; // action IDs, always 4 entries
+  uint32          next_step       = 5; // action ID
+  bool            is_dancing      = 6;
+}
+
+// DRG - Dragoon
+message DragoonGauge {
+  int32  lotd_timer             = 1; // Life of the Dragon, milliseconds
+  bool   is_lotd_active         = 2;
+  uint32 eye_count              = 3;
+  uint32 firstminds_focus_count = 4;
+}
+
+// DRK - Dark Knight
+message DarkKnightGauge {
+  uint32       blood                   = 1;
+  uint32       darkside_time_remaining = 2; // milliseconds
+  uint32       shadow_time_remaining   = 3; // milliseconds
+  bool         has_dark_arts           = 4;
+  DeliriumStep delirium_combo_step     = 5;
+}
+
+// GNB - Gunbreaker
+message GunbreakerGauge {
+  uint32 ammo               = 1;
+  int32  max_timer_duration = 2; // Gnashing Fang combo max
+  uint32 ammo_combo_step    = 3;
+}
+
+// MCH - Machinist
+message MachinistGauge {
+  int32  overheat_time_remaining   = 1; // milliseconds
+  int32  summon_time_remaining     = 2; // Rook/Queen, milliseconds
+  uint32 heat                      = 3;
+  uint32 battery                   = 4;
+  uint32 last_summon_battery_power = 5;
+  bool   is_overheated             = 6;
+  bool   is_robot_active           = 7;
+}
+
+// MNK - Monk
+// nadi is stored as uint32 to support combined flag values (e.g. Lunar|Solar = 3)
+message MonkGauge {
+  uint32               chakra               = 1;
+  repeated BeastChakra beast_chakra         = 2; // always 3 entries
+  uint32               nadi                 = 3; // Nadi bitmask (None=0, Lunar=1, Solar=2, Both=3)
+  uint32               opo_opo_fury         = 4;
+  uint32               raptor_fury          = 5;
+  uint32               coeurl_fury          = 6;
+  uint32               blitz_time_remaining = 7; // milliseconds
+}
+
+// NIN - Ninja
+message NinjaGauge {
+  uint32 ninki     = 1;
+  uint32 kazematoi = 2;
+}
+
+// PCT - Pictomancer
+// creature_flags and canvas_flags stored as uint32 to support combined bitmask values
+message PictomancerGauge {
+  uint32 pallete_gauge         = 1;
+  uint32 paint                 = 2;
+  bool   creature_motif_drawn  = 3;
+  bool   weapon_motif_drawn    = 4;
+  bool   landscape_motif_drawn = 5;
+  bool   moogle_portrait_ready = 6;
+  bool   madeen_portrait_ready = 7;
+  uint32 creature_flags        = 8; // CreatureFlags bitmask
+  uint32 canvas_flags          = 9; // CanvasFlags bitmask
+}
+
+// PLD - Paladin
+message PaladinGauge {
+  uint32 oath_gauge = 1;
+}
+
+// RDM - Red Mage
+message RedMageGauge {
+  uint32 white_mana  = 1;
+  uint32 black_mana  = 2;
+  uint32 mana_stacks = 3;
+}
+
+// RPR - Reaper
+message ReaperGauge {
+  uint32 soul                      = 1;
+  uint32 shroud                    = 2;
+  uint32 enshrouded_time_remaining = 3; // milliseconds
+  uint32 lemure_shroud             = 4;
+  uint32 void_shroud               = 5;
+}
+
+// SAM - Samurai
+// sen stored as uint32 to support combined flag values (e.g. Setsu|Getsu = 3)
+message SamuraiGauge {
+  Kaeshi kaeshi            = 1;
+  uint32 kenki             = 2;
+  uint32 meditation_stacks = 3;
+  uint32 sen               = 4; // Sen bitmask (Setsu=1, Getsu=2, Ka=4)
+  bool   has_setsu         = 5;
+  bool   has_getsu         = 6;
+  bool   has_ka            = 7;
+}
+
+// SCH - Scholar
+message ScholarGauge {
+  uint32        aetherflow     = 1;
+  uint32        fairy_gauge    = 2;
+  int32         seraph_timer   = 3; // milliseconds
+  DismissedFairy dismissed_fairy = 4;
+}
+
+// SGE - Sage
+message SageGauge {
+  int32  addersgall_timer = 1; // milliseconds, 0-20000
+  uint32 addersgall       = 2;
+  uint32 addersting       = 3;
+  bool   eukrasia         = 4;
+}
+
+// SMN - Summoner
+message SummonerGauge {
+  uint32           summon_timer_remaining     = 1;  // milliseconds
+  uint32           attunement_timer_remaining = 2;  // milliseconds
+  SummonPet        return_summon              = 3;
+  PetGlam          return_summon_glam         = 4;
+  uint32           attunement_count           = 5;
+  SummonAttunement attunement_type            = 6;
+  uint32           aether_flags              = 7;  // AetherFlags bitmask (from FFXIVClientStructs)
+  bool             is_bahamut_ready           = 8;
+  bool             is_phoenix_ready           = 9;
+  bool             is_ifrit_ready             = 10;
+  bool             is_titan_ready             = 11;
+  bool             is_garuda_ready            = 12;
+  bool             is_ifrit_attuned           = 13;
+  bool             is_titan_attuned           = 14;
+  bool             is_garuda_attuned          = 15;
+  bool             has_aetherflow_stacks      = 16;
+  uint32           aetherflow_stacks          = 17;
+}
+
+// VPR - Viper
+message ViperGauge {
+  uint32       rattling_coil_stacks = 1; // Uncoiled Fury uses
+  uint32       serpent_offering     = 2;
+  uint32       anguine_tribute      = 3; // Generation/Ouroboros tracker
+  DreadCombo   dread_combo          = 4;
+  SerpentCombo serpent_combo        = 5;
+}
+
+// WAR - Warrior
+message WarriorGauge {
+  uint32 beast_gauge = 1;
+}
+
+// WHM - White Mage
+message WhiteMageGauge {
+  int32  lily_timer = 1; // milliseconds
+  uint32 lily       = 2;
+  uint32 blood_lily = 3;
+}
+
 /* =======================
    Utility
    ======================= */
@@ -200,7 +397,161 @@ enum ObjectKind
     CardStand = 14;
     Ornament = 15;
 }
+//Gauge related Enums
 
+// AST - Arcanum (card) types
+enum CardType {
+  CARD_TYPE_NONE    = 0;
+  CARD_TYPE_BALANCE = 1;
+  CARD_TYPE_BOLE    = 2;
+  CARD_TYPE_ARROW   = 3;
+  CARD_TYPE_SPEAR   = 4;
+  CARD_TYPE_EWER    = 5;
+  CARD_TYPE_SPIRE   = 6;
+  CARD_TYPE_LORD    = 7;
+  CARD_TYPE_LADY    = 8;
+}
+
+// AST - Draw types
+enum DrawType {
+  DRAW_TYPE_ASTRAL = 0;
+  DRAW_TYPE_UMBRAL = 1;
+}
+
+// BRD - Song types
+enum Song {
+  SONG_NONE     = 0;
+  SONG_MAGE     = 1;
+  SONG_ARMY     = 2;
+  SONG_WANDERER = 3;
+}
+
+// DRK - Delirium combo steps
+enum DeliriumStep {
+  DELIRIUM_STEP_SCARLET_DELIRIUM = 0;
+  DELIRIUM_STEP_COMEUPPANCE      = 1;
+  DELIRIUM_STEP_TORCLEAVER       = 2;
+}
+
+// MNK - Beast Chakra types
+enum BeastChakra {
+  BEAST_CHAKRA_NONE    = 0;
+  BEAST_CHAKRA_OPO_OPO = 1;
+  BEAST_CHAKRA_RAPTOR  = 2;
+  BEAST_CHAKRA_COEURL  = 3;
+}
+
+// MNK - Nadi types (flags field; None=0, Lunar=1, Solar=2, Both=3)
+enum Nadi {
+  NADI_NONE  = 0;
+  NADI_LUNAR = 1;
+  NADI_SOLAR = 2;
+}
+
+// NIN - Mudra types
+// Note: C# values are Ten=1, Chi=2, Jin=3.
+enum Mudras {
+  MUDRAS_NONE = 0;
+  MUDRAS_TEN  = 1;
+  MUDRAS_CHI  = 2;
+  MUDRAS_JIN  = 3;
+}
+
+// PCT - Canvas flags (bitmask: Pom=1, Wing=2, Claw=4, Maw=8, Weapon=16, Landscape=32)
+enum CanvasFlags {
+  CANVAS_FLAGS_NONE      = 0;
+  CANVAS_FLAGS_POM       = 1;
+  CANVAS_FLAGS_WING      = 2;
+  CANVAS_FLAGS_CLAW      = 4;
+  CANVAS_FLAGS_MAW       = 8;
+  CANVAS_FLAGS_WEAPON    = 16;
+  CANVAS_FLAGS_LANDSCAPE = 32;
+}
+
+// PCT - Creature flags (bitmask: Pom=1, Wings=2, Claw=4, MooglePortrait=16, MadeenPortrait=32)
+enum CreatureFlags {
+  CREATURE_FLAGS_NONE            = 0;
+  CREATURE_FLAGS_POM             = 1;
+  CREATURE_FLAGS_WINGS           = 2;
+  CREATURE_FLAGS_CLAW            = 4;
+  CREATURE_FLAGS_MOOGLE_PORTRAIT = 16;
+  CREATURE_FLAGS_MADEEN_PORTRAIT = 32;
+}
+
+// SAM - Kaeshi types
+enum Kaeshi {
+  KAESHI_NONE       = 0;
+  KAESHI_HIGANBANA  = 1;
+  KAESHI_GOKEN      = 2;
+  KAESHI_SETSUGEKKA = 3;
+  KAESHI_NAMIKIRI   = 4;
+}
+
+// SAM - Sen flags (bitmask: Setsu=1, Getsu=2, Ka=4)
+enum Sen {
+  SEN_NONE  = 0;
+  SEN_SETSU = 1;
+  SEN_GETSU = 2;
+  SEN_KA    = 4;
+}
+
+// SCH - Dismissed fairy types
+// Note: raw wire values are Eos=6 and Selene=7
+enum DismissedFairy {
+  DISMISSED_FAIRY_UNKNOWN = 0;
+  DISMISSED_FAIRY_EOS     = 6;
+  DISMISSED_FAIRY_SELENE  = 7;
+}
+
+// SMN - Summoned pet types
+// Note: Carbuncle raw value is 23
+enum SummonPet {
+  SUMMON_PET_NONE      = 0;
+  SUMMON_PET_CARBUNCLE = 23;
+}
+
+// SMN - Pet glam types
+enum PetGlam {
+  PET_GLAM_NONE      = 0;
+  PET_GLAM_EMERALD   = 1;
+  PET_GLAM_TOPAZ     = 2;
+  PET_GLAM_RUBY      = 3;
+  PET_GLAM_CARBUNCLE = 4;
+  PET_GLAM_IFRIT     = 5;
+  PET_GLAM_TITAN     = 6;
+  PET_GLAM_GARUDA    = 7;
+}
+
+// SMN - Summon attunement types
+enum SummonAttunement {
+  SUMMON_ATTUNEMENT_NONE   = 0;
+  SUMMON_ATTUNEMENT_IFRIT  = 1;
+  SUMMON_ATTUNEMENT_TITAN  = 2;
+  SUMMON_ATTUNEMENT_GARUDA = 3;
+}
+
+// VPR - Dread combo actions
+// Note: source has no zero value;
+enum DreadCombo {
+  DREAD_COMBO_NONE            = 0;
+  DREAD_COMBO_DREADWINDER     = 1;
+  DREAD_COMBO_HUNTERS_COIL    = 2;
+  DREAD_COMBO_SWIFTSKINS_COIL = 3;
+  DREAD_COMBO_PIT_OF_DREAD    = 4;
+  DREAD_COMBO_HUNTERS_DEN     = 5;
+  DREAD_COMBO_SWIFTSKINS_DEN  = 6;
+}
+
+// VPR - Serpent combo actions
+enum SerpentCombo {
+  SERPENT_COMBO_NONE          = 0;
+  SERPENT_COMBO_DEATH_RATTLE  = 1;
+  SERPENT_COMBO_LAST_LASH     = 2;
+  SERPENT_COMBO_FIRST_LEGACY  = 3;
+  SERPENT_COMBO_SECOND_LEGACY = 4;
+  SERPENT_COMBO_THIRD_LEGACY  = 5;
+  SERPENT_COMBO_FOURTH_LEGACY = 6;
+}
 //past this line, non game related Enums
 enum EncounterEndKind
 {
