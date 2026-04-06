@@ -327,13 +327,36 @@ message PlayerEnterCombat{
   uint32 weapon_damage = 14;
 }
 message LocalPlayerSnapshot{
-  uint32 attack_power = 7;
-  uint32 skillspeed = 8;
-  uint32 spellspeed = 9;
-  uint32 tenacity = 10;
-  uint32 determination = 11;
-  uint32 criticalHit = 12;
-  uint32 directHit = 13;
+  uint32 attack_power = 1;
+  uint32 skillspeed = 2;
+  uint32 spellspeed = 3;
+  uint32 tenacity = 4;
+  uint32 determination = 5;
+  uint32 criticalHit = 6;
+  uint32 directHit = 7;
+  oneof gauge {
+    AstrologianGauge  astrologian = 8;
+    BardGauge         bard        = 9;
+    BlackMageGauge    black_mage  = 10;
+    DancerGauge       dancer      = 11;
+    DarkKnightGauge   dark_knight = 12;
+    DragoonGauge      dragoon     = 13;
+    GunbreakerGauge   gunbreaker  = 14;
+    MachinistGauge    machinist   = 15;
+    MonkGauge         monk        = 16;
+    NinjaGauge        ninja       = 17;
+    PaladinGauge      paladin     = 18;
+    PictomancerGauge  pictomancer = 19;
+    ReaperGauge       reaper      = 20;
+    RedMageGauge      red_mage    = 21;
+    SageGauge         sage        = 22;
+    SamuraiGauge      samurai     = 23;
+    ScholarGauge      scholar     = 24;
+    SummonerGauge     summoner    = 25;
+    ViperGauge        viper       = 26;
+    WarriorGauge      warrior     = 27;
+    WhiteMageGauge    white_mage  = 28;
+  }
 }
 /* =======================
    Enums
