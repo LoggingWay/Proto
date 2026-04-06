@@ -105,15 +105,18 @@ message ZoneChangeData{
 
 
 //Gauge related messages
-message BlackMageGauge{
-  bool InAstralFire = 1;
-  bool InUmbralIce = 2;
-  bool IsEnochianActive = 3;
-  byte UmbralHearts = 4;
-  byte PolyglotStacks = 5;
-  byte UmbralIceStacks = 6;
-  byte AstralFireStacks = 7;
-  int AstralSoulStacks = 8;//Flare Star counter
+// BLM - Black Mage
+message BlackMageGauge {
+  int32  enochian_timer    = 1; // milliseconds
+  uint32 polyglot_stacks   = 2;
+  uint32 umbral_hearts     = 3;
+  uint32 umbral_ice_stacks = 4; // 0 when not in Umbral Ice
+  uint32 astral_fire_stacks = 5; // 0 when not in Astral Fire
+  int32  astral_soul_stacks = 6; // Flare Star counter
+  bool   in_umbral_ice     = 7;
+  bool   in_astral_fire    = 8;
+  bool   is_enochian_active = 9;
+  bool   is_paradox_active  = 10;
 }
 
 // AST - Astrologian
