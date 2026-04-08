@@ -26,6 +26,8 @@ message CombatEvent {
     EncounterEndData encounter_end = 17;
     ZoneChangeData zone_change = 18;
     PlayerEnterCombat player_join = 19;
+    DownTimeBegin downtime_begin = 20;
+    DownTimeEnd downtime_end = 21;
   }
 }
 
@@ -103,7 +105,13 @@ message ZoneChangeData{
     uint32 territorytype = 1;
 }
 
+message DownTimeBegin{
 
+}
+
+message DownTimeEnd{
+
+}
 //Gauge related messages
 // BLM - Black Mage
 message BlackMageGauge {
